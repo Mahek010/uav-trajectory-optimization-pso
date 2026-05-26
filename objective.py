@@ -1,5 +1,5 @@
 import numpy as np
-from .environment import interpolate_path, make_path_from_vector
+from environment import interpolate_path, make_path_from_vector
 
 
 def path_length(path: np.ndarray) -> float:
