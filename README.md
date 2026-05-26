@@ -87,11 +87,13 @@ This creates updated figures and path data inside `results/`.
 
 The output includes:
 
-- Optimized UAV path
-- Baseline straight-line path comparison
-- Circular obstacle zones
-- PSO convergence curve
-- Optimized waypoint coordinates as CSV
+### UAV Trajectory Comparison
+
+![Trajectory Comparison](trajectory_comparison.png)
+
+### PSO Convergence Curve
+
+![PSO Convergence](convergence.png)
 
 ## How to Present This Project in a CV
 
@@ -113,4 +115,4 @@ The output includes:
 
 ## Author
 
-Mahek Pankhu
+Mahek Pankhaniya
