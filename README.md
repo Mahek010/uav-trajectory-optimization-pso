@@ -1,34 +1,92 @@
-# Energy-Efficient UAV Trajectory Optimization using Particle Swarm Optimization in Python
+# Energy-Efficient UAV Trajectory Optimization Using Particle Swarm Optimization (PSO)
 
-This project demonstrates a simulation-based UAV path planning method using Particle Swarm Optimization (PSO). A UAV must fly from a start point to a target point while avoiding circular obstacles and minimising a weighted objective containing distance, energy proxy, smoothness, boundary penalties, and collision penalties.
+## Overview
 
-The project is designed for research/internship applications related to UAV modeling, simulation, optimization, and autonomous systems.
+This project presents a simulation-based framework for energy-efficient UAV trajectory optimization using Particle Swarm Optimization (PSO). The objective is to generate a collision-free trajectory between a predefined start and target location while minimizing a multi-objective cost function that considers travel distance, energy consumption, path smoothness, and obstacle avoidance.
+
+The implementation is developed entirely in Python and demonstrates how population-based optimization techniques can be applied to autonomous path planning problems in obstacle-rich environments.
+
+---
+
+## Motivation
+
+Trajectory planning is a critical component of autonomous UAV systems. Traditional shortest-path approaches often neglect energy efficiency, flight smoothness, and safety constraints.
+
+This project addresses these challenges by formulating trajectory planning as a constrained optimization problem and solving it using Particle Swarm Optimization.
+
+Applications include:
+
+* Autonomous drone navigation
+* Delivery and logistics systems
+* Inspection and surveillance missions
+* Search and rescue operations
+* Intelligent transportation and robotics
+
+---
 
 ## Key Features
 
-- 2D UAV trajectory optimization with configurable waypoints
-- Particle Swarm Optimization implemented from scratch
-- Energy-aware objective function
-- Obstacle avoidance with soft safety penalties
-- Baseline path comparison
-- Convergence plot and trajectory visualization
-- Clean modular Python code for GitHub
-- Technical report included as `technical_report.pdf`
+* Particle Swarm Optimization implemented from scratch
+* Energy-aware UAV trajectory planning
+* Circular obstacle avoidance using penalty-based constraints
+* Configurable environment and waypoint generation
+* Multi-objective optimization framework
+* Baseline path comparison
+* Convergence analysis and visualization
+* Modular and extensible Python architecture
+* Research-oriented implementation suitable for further development
 
-## Mathematical Objective
+---
 
-The optimizer minimizes:
+## Optimization Formulation
+
+The optimizer minimizes the following objective function:
 
 ```text
-J = w_d * Distance + w_e * Energy + w_s * Smoothness + w_c * CollisionPenalty
+J = w_d × Distance
+  + w_e × Energy
+  + w_s × Smoothness
+  + w_c × CollisionPenalty
 ```
 
 Where:
 
-- `Distance` is total path length
-- `Energy` is a simplified proxy based on path length, changes in segment length, and turning effort
-- `Smoothness` penalizes sharp turns
-- `CollisionPenalty` heavily penalizes entering or passing too close to obstacles
+| Component         | Description                                           |
+| ----------------- | ----------------------------------------------------- |
+| Distance          | Total trajectory length                               |
+| Energy            | Simplified energy consumption proxy                   |
+| Smoothness        | Penalizes abrupt heading changes                      |
+| Collision Penalty | Penalizes obstacle intersections and unsafe proximity |
+
+The weighted objective encourages safe, smooth, and energy-efficient trajectories.
+
+---
+
+## Methodology
+
+### Environment Setup
+
+The simulation environment consists of:
+
+* Start location
+* Target location
+* Multiple circular obstacles
+* Safety buffer regions
+
+### Trajectory Representation
+
+A trajectory is represented by a sequence of intermediate waypoints connecting the start and target positions.
+
+### Optimization Process
+
+1. Initialize swarm particles
+2. Generate candidate waypoint sets
+3. Evaluate objective function
+4. Update particle velocities and positions
+5. Track global best solution
+6. Repeat until convergence
+
+---
 
 ## Repository Structure
 
@@ -44,66 +102,155 @@ uav-trajectory-optimization-pso/
 ├── pso.py
 ├── visualization.py
 ├── main.py
-├── results/           ← created at runtime
-│   ├── optimized_path.csv
-│   ├── summary_metrics.csv
-│   ├── trajectory_comparison.png
-│   └── convergence.png
-└── technical_report.pdf
+├── technical_report.pdf
+└── results/
+    ├── optimized_path.csv
+    ├── summary_metrics.csv
+    ├── trajectory_comparison.png
+    └── convergence.png
 ```
 
-## Quick Start
+---
 
-### 1. Create a virtual environment
+## Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/Mahek010/uav-trajectory-optimization-pso.git
+cd uav-trajectory-optimization-pso
+```
+
+### Create Virtual Environment
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Linux/Mac
-# .venv\Scripts\activate   # Windows
 ```
 
-### 2. Install dependencies
+Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run the experiment
+---
+
+## Running the Project
+
+Execute:
 
 ```bash
 python main.py
 ```
 
-This creates updated figures and path data inside `results/`.
+The program will:
 
-## Example Output
+* Optimize the UAV trajectory
+* Generate convergence statistics
+* Create visualizations
+* Export performance metrics
+* Save trajectory coordinates
 
-The output includes:
+---
 
-- Optimized UAV path
-- Baseline straight-line path comparison
-- Circular obstacle zones
-- PSO convergence curve
-- Optimized waypoint coordinates as CSV
+## Example Outputs
 
-## How to Present This Project in a CV
+The simulation generates:
 
-**Energy-Efficient UAV Trajectory Optimization using Particle Swarm Optimization**
+### Trajectory Visualization
 
-- Built a Python-based UAV trajectory optimization simulation using Particle Swarm Optimization.
-- Modeled UAV path planning with obstacle avoidance, safety constraints, and energy-aware cost functions.
-- Designed objective terms for distance, smoothness, energy consumption, and collision penalties.
-- Visualized optimized trajectories and convergence behavior using NumPy and Matplotlib.
-- Prepared a technical report and GitHub-ready documentation for research presentation.
+* Initial baseline trajectory
+* Optimized UAV path
+* Obstacle locations
+* Safety margins
 
-## Future Improvements
+### Optimization Metrics
 
-- Extend to 3D UAV flight dynamics
-- Add wind disturbance modeling
-- Compare PSO with Differential Evolution and Genetic Algorithms
-- Implement PID-based trajectory tracking
-- Connect the planner to PX4/ArduPilot SITL or ROS 2
+* Best objective value
+* Path length
+* Energy proxy
+* Collision penalties
+* Convergence history
+
+### Exported Files
+
+```text
+results/
+├── optimized_path.csv
+├── summary_metrics.csv
+├── trajectory_comparison.png
+└── convergence.png
+```
+
+---
+
+## Technologies Used
+
+* Python
+* NumPy
+* Matplotlib
+* Particle Swarm Optimization (PSO)
+* Scientific Computing
+* Simulation & Modeling
+
+---
+
+## Future Work
+
+Potential extensions include:
+
+* 3D trajectory optimization
+* Dynamic obstacle avoidance
+* Wind disturbance modeling
+* Multi-UAV cooperative planning
+* Differential Evolution comparison
+* Genetic Algorithm comparison
+* Reinforcement Learning integration
+* ROS 2 integration
+* PX4 / ArduPilot SITL deployment
+* Real-time trajectory tracking
+
+---
+
+## Research Contributions
+
+This project demonstrates:
+
+* Mathematical modeling of UAV navigation
+* Metaheuristic optimization techniques
+* Multi-objective cost function design
+* Autonomous path planning concepts
+* Scientific computing and simulation workflows
+
+The implementation serves as a foundation for advanced research in autonomous systems, robotics, optimization, and intelligent transportation.
+
+---
 
 ## Author
 
-Mahek Pankhu
+**Mahek Pankhaniya**
+
+M.Sc. Mathematical Modeling, Simulation and Optimization
+
+### Interests
+
+* Optimization Algorithms
+* Artificial Intelligence
+* Autonomous Systems
+* Robotics
+* UAV Navigation
+* Scientific Computing
+
+GitHub: [https://github.com/Mahek010](https://github.com/Mahek010)
