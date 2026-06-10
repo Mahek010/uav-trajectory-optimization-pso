@@ -164,10 +164,35 @@ The program will:
 * Save trajectory coordinates
 
 ---
+## Results
 
-## Example Outputs
+### Optimized Trajectory
 
-The simulation generates:
+The optimized UAV trajectory successfully avoids obstacles while minimizing the weighted objective function consisting of distance, energy consumption, smoothness, and collision penalties.
+
+![Trajectory](results/trajectory_comparison.png)
+
+### PSO Convergence
+
+The convergence curve illustrates the optimization progress of the Particle Swarm Optimization algorithm over successive iterations.
+
+![Convergence](results/convergence.png)
+
+### Generated Outputs
+
+- Optimized UAV trajectory
+- Baseline path comparison
+- Obstacle avoidance visualization
+- PSO convergence history
+- Optimized waypoint coordinates (CSV)
+- Summary performance metrics
+### Optimized Trajectory
+
+![Trajectory](results/trajectory_comparison.png)
+
+### PSO Convergence
+
+![Convergence](results/convergence.png)
 
 ### Trajectory Visualization
 
