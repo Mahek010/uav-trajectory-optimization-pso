@@ -186,13 +186,7 @@ The convergence curve illustrates the optimization progress of the Particle Swar
 - PSO convergence history
 - Optimized waypoint coordinates (CSV)
 - Summary performance metrics
-### Optimized Trajectory
 
-![Trajectory](results/trajectory_comparison.png)
-
-### PSO Convergence
-
-![Convergence](results/convergence.png)
 
 ### Trajectory Visualization
 
